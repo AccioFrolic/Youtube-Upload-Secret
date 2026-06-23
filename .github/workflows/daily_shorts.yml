@@ -10,15 +10,16 @@ jobs:
   build-and-upload:
     runs-on: ubuntu-latest
     steps:
-    # 1. Pull down your repository code
+    # 1. Pull down your repository code (Updated to squash Node warning)
     - name: Checkout Repository Code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.1.7
 
-    # 2. Set up the Python environment
+    # 2. Set up the Python environment (Updated to squash Node warning)
     - name: Initialize Python 3.11
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v5.1.1
       with:
         python-version: '3.11'
+
 
     # 3. Pre-install FFmpeg (Critical for yt-dlp to stitch video/audio tracks)
     - name: Install System FFmpeg Engine
