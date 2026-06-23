@@ -23,7 +23,7 @@ def upload_to_youtube(file_path, video_title):
             "snippet": {
                 "title": video_title[:100],
                 "description": "Automated Short content deployment via GitHub Actions.",
-                "categoryId": "22", # People & Blogs
+                "categoryId": "20", # People & Blogs
                 "tags": ["shorts", "viral", "automation"]
             },
             "status": {"privacyStatus": "private"} # Safely private first for review
@@ -41,11 +41,11 @@ def upload_to_youtube(file_path, video_title):
 
 # 3. PIPELINE SCHEDULER EXECUTION
 def run_daily_pipeline():
-    search_topic = "satisfying sorting machine" # Change this to any niche you want
+    search_topic = "Gaming" # Change this to any niche you want
     output_dir = "." # GitHub runner allows local directory storage natively
     
     ydl_opts = {
-        'playlistend': 10, # Scan the top 10 items
+        'playlistend': 100, # Scan the top 10 items
         'outtmpl': os.path.join(output_dir, 'downloaded_short.%(ext)s'),
         
         # STRICTIONS: Only Shorts (<=60s), Creative Commons, Highly Engaged, Past 6 Months
