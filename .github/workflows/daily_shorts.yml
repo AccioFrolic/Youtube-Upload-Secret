@@ -10,24 +10,23 @@ jobs:
   build-and-upload:
     runs-on: ubuntu-latest
     steps:
-    # 1. Pull down your repository code (Updated to squash Node warning)
+    # 1. Pull down your repository code (Updated version)
     - name: Checkout Repository Code
       uses: actions/checkout@v4.1.7
 
-    # 2. Set up the Python environment (Updated to squash Node warning)
+    # 2. Set up the Python environment (Updated version)
     - name: Initialize Python 3.11
       uses: actions/setup-python@v5.1.1
       with:
         python-version: '3.11'
 
-
-    # 3. Pre-install FFmpeg (Critical for yt-dlp to stitch video/audio tracks)
-    - name: Install System FFmpeg Engine
+    # 3. Pre-install FFmpeg and Node.js (Critical for yt-dlp processing and JS warnings)
+    - name: Install System Engines (FFmpeg & Node)
       run: |
         sudo apt-get update
-        sudo apt-get install -y ffmpeg
+        sudo apt-get install -y ffmpeg nodejs
 
-    # 4. Install all Python tool dependancies 
+    # 4. Install all Python tool dependencies 
     - name: Install Requirements
       run: |
         pip install yt-dlp google-api-python-client google-auth-oauthlib google-auth-httplib2
