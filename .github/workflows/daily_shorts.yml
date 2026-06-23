@@ -1,0 +1,40 @@
+name: Daily YouTube Shorts Uploader
+
+# Automatically run the pipeline every single day
+on:
+  schedule:
+    - cron: '0 17 * * *'  # Runs at exactly 5:00 PM UTC every day
+  workflow_dispatch:      # Gives you a manual "Run" button in the browser for testing
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+    # 1. Pull down your repository code
+    - name: Checkout Repository Code
+      uses: actions/checkout@v4
+
+    # 2. Set up the Python environment
+    - name: Initialize Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    # 3. Pre-install FFmpeg (Critical for yt-dlp to stitch video/audio tracks)
+    - name: Install System FFmpeg Engine
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ffmpeg
+
+    # 4. Install all Python tool dependancies 
+    - name: Install Requirements
+      run: |
+        pip install yt-dlp google-api-python-client google-auth-oauthlib google-auth-httplib2
+
+    # 5. Execute your main script and securely pass your secrets from the vault
+    - name: Execute Daily Pipeline
+      env:
+        YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+        YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+      run: python agent.py
