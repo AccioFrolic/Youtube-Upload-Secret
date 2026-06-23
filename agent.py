@@ -41,7 +41,7 @@ def upload_to_youtube(file_path, video_title):
 
 # 3. PIPELINE SCHEDULER EXECUTION
 def run_daily_pipeline():
-    search_topic = "Gaming shorts" # Change this to any niche you want
+    search_topic = "funny minecraft moments shorts" # Change this to any niche you want
     output_dir = "." # GitHub runner allows local directory storage natively
     
     ydl_opts = {
