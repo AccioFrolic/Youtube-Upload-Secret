@@ -50,7 +50,7 @@ def run_daily_pipeline():
         
         # STRICTIONS: Only Shorts (<=60s), Creative Commons, Highly Engaged, Past 6 Months
         'match_filter': yt_dlp.utils.match_filter_func(
-            "duration <= 60 & license *= 'Creative Commons' & view_count >= 50000 & upload_date >= today-6month"
+            "duration <= 60 & license *= 'Creative Commons' & view_count >= 5000 & upload_date >= today-6month"
         )
     }
     
