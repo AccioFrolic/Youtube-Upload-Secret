@@ -1,10 +1,10 @@
-name: Daily YouTube Automation
+name: Daily YouTube Shorts Uploader
 
-# Trigger automatically every day at 5:00 PM UTC
 on:
   schedule:
     - cron: '0 17 * * *'
-  workflow_dispatch: # Allows you to also run it manually from the browser
+  workflow_dispatch:
+
 
 jobs:
   run-automation:
