@@ -51,7 +51,7 @@ def upload_to_youtube(file_path, video_title):
         response = request.execute()
         print(f"✅ Video uploaded successfully! Video ID: {response.get('id')}")
         return True
-        except Exception as e:
+    except Exception as e:
         print(f"❌ YouTube API Upload failed: {e}")
         return False
 
