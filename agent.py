@@ -67,7 +67,16 @@ def run_daily_pipeline():
     ydl_opts = {
         'playlistend': 20,
         'outtmpl': os.path.join(output_dir, 'downloaded_short.%(ext)s'),
-        'quiet': True
+        'quiet': True,
+        
+        # --- ANTI-BOT BYPASS SETTINGS ---
+        # Mask the GitHub cloud runtime platform footprint using creator profile headers
+        'extractor_args': {
+            'youtube': {
+                'player_client': ['web_creator', 'android'],
+                'skip': ['dash', 'hls']
+            }
+        }
     }
     
     try:
