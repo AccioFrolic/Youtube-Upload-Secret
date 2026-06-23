@@ -57,7 +57,7 @@ def run_daily_pipeline():
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             print(f"📡 Searching for: {search_topic}...")
-            info = ydl.extract_info(f"ytsearch:{search_topic}", download=True)
+            info = ydl.extract_info(f"ytsearch20:{search_topic}", download=True)
             
             # Extract actual details of the matching video that passed filters
             if 'entries' in info and len(info['entries']) > 0:
