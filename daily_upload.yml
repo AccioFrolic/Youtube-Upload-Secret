@@ -1,0 +1,41 @@
+name: Daily YouTube Automation
+
+# Trigger automatically every day at 5:00 PM UTC
+on:
+  schedule:
+    - cron: '0 17 * * *'
+  workflow_dispatch: # Allows you to also run it manually from the browser
+
+jobs:
+  run-automation:
+    runs-on: ubuntu-latest
+    steps:
+    # 1. Pull down your code
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    # 2. Set up Python
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    # 3. Install FFmpeg system-wide
+    - name: Install FFmpeg
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ffmpeg
+
+    # 4. Install your Python requirements
+    - name: Install Dependencies
+      run: |
+        pip install yt-dlp google-api-python-client google-auth-oauthlib
+
+    # 5. Execute your script natively
+    - name: Run Downloader Script
+      env:
+        # Pass your secret YouTube API refresh keys securely
+        YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+        YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+      run: python agent.py
