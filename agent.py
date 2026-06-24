@@ -95,7 +95,7 @@ def run_daily_pipeline():
             print(f"📡 Searching YouTube for top 20 results using Authenticated Session: '{search_topic}'...")
             
             # Extract metadata details securely
-            info = ydl.extract_info(f"ytsearch20:{search_topic}", download=False)
+            info = ydl.extract_info(f"ytsearch:{search_topic}", download=False)
             
             if 'entries' in info:
                 for index, entry in enumerate(info['entries'], start=1):
